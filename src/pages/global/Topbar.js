@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import {Box, IconButton, useTheme, InputBase} from '@mui/material';
 import { ColorModeContext,colorTokens } from '../../theme';
-import { LightModeOutlined, DarkModeOutlined, NotificationsOutlined, SettingsOutlined, PersonOutlined, SearchIcon } from '@mui/icons-material';
+import { LightModeOutlined, DarkModeOutlined, NotificationsOutlined, SettingsOutlined, PersonOutlined, SearchOutlined } from '@mui/icons-material';
 
 export default function Topbar(){
     const theme = useTheme();
@@ -27,7 +27,7 @@ export default function Topbar(){
             >
                 <InputBase sx={{ml: 2, flex: 1}} placeholder='Search'/>
                 <IconButton type='button' sx={{p: 1}}>
-                    <SearchIcon />
+                    <SearchOutlined />
                 </IconButton>
             </Box>
             <Box sx={{ display: 'flex' }}>
