@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import { Link } from 'react-router-dom';
+import React, {useState, Fragment} from 'react';
+//import { Link } from 'react-router-dom';
 import { Sidebar, Menu, MenuItem } from 'react-pro-sidebar';
 import {Box, IconButton, Typography, useTheme} from '@mui/material';
 import { colorTokens } from '../../theme';
@@ -9,22 +9,6 @@ import { HomeOutlined, PeopleOutlined, ContactsOutlined, ReceiptOutlined,
  } from '@mui/icons-material';
 import userPhoto from '../../assets/student 2.jpg';
 import Item from '../../components/menuItem/Item';
-
-/* function Item({title, to, icon, selected, setSelected}){
-    const theme = useTheme();
-    const colors = colorTokens(theme.palette.mode);
-    return (
-        <MenuItem 
-            active={selected === title} 
-            style={{color: colors.grey[100]}}
-            onClick={() => setSelected(title)}
-            icon={icon}
-        >
-            <Typography>{title}</Typography>
-            <Link to={to}/>
-        </MenuItem>
-    )
-} */
 
 const routes = [
     {
@@ -48,14 +32,19 @@ const routes = [
         icon: <ReceiptOutlined />
     },
     {
-        title: "FAQs",
-        to: "/faq",
-        icon: <HelpOutlined />
+        title: "Form",
+        to: "/form",
+        icon: <PersonOutlined />
     },
     {
         title: "Calendar",
         to: "/calendar",
         icon: <CalendarTodayOutlined />
+    },
+    {
+        title: "FAQs",
+        to: "/faq",
+        icon: <HelpOutlined />
     },
     {
         title: "Bar",
@@ -103,7 +92,8 @@ export default function SidebarMenu(){
                     padding: "5px 35x 5px 20px !important"
                 },
                 "& .ps-menu-button:hover": {
-                    color: "#868dfb !important"
+                    color: "#868dfb !important",
+                    background: "transparent !important"
                 },
                 "& .ps-menuitem-root.active": {
                     color: "#6870fa !important"
@@ -173,13 +163,43 @@ export default function SidebarMenu(){
                     <Box sx={{pl: isCollapsed ? undefined : "10%"}}>
                         {routes.map((route, index) => {
                             return(
-                                <Item 
-                                    title={route.title}
-                                    to={route.to}
-                                    icon={route.icon}
-                                    selected={selected}
-                                    setSelected={setSelected}
-                                />
+                                <Fragment key={index} >
+                                    {index === 1 && 
+                                        <Typography 
+                                            variant="h6" 
+                                            color={colors.grey[300]}
+                                            sx={{ m: "15px 0 5px 20px"}}
+                                        >
+                                            Data
+                                        </Typography>
+                                    }
+                                    {index === 4 && 
+                                        <Typography 
+                                            variant="h6" 
+                                            color={colors.grey[300]}
+                                            sx={{ m: "15px 0 5px 20px"}}
+                                        >
+                                            Pages
+                                        </Typography>
+                                    }
+                                    {index === 7 && 
+                                        <Typography 
+                                            variant="h6" 
+                                            color={colors.grey[300]}
+                                            sx={{ m: "15px 0 5px 20px"}}
+                                        >
+                                            Charts
+                                        </Typography>
+                                    }                                                                         
+                                    <Item 
+                                        title={route.title}
+                                        to={route.to}
+                                        icon={route.icon}
+                                        selected={selected}
+                                        setSelected={setSelected}
+                                    />
+                                </Fragment>
+                                
                             )
                         })}
                        
