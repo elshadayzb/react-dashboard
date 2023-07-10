@@ -101,7 +101,7 @@ export default function SidebarMenu(){
             }}
         >
 
-            <Sidebar style={{height: "100%"}}>
+            <Sidebar style={{height: "100%"}} collapsed={isCollapsed}>
                 <Menu>
                     <MenuItem 
                         icon={isCollapsed ? <MenuOutlined/> : undefined}
