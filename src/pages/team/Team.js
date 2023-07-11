@@ -58,6 +58,7 @@ export default function Team(){
             }
         }
     ]
+    
     return(
         <Box sx={{ m: "20px" }}>
             <Header title="TEAM" subtitle="Managing Team Members" />

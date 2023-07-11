@@ -5,7 +5,7 @@ import Topbar from "./pages/global/Topbar";
 import SidebarMenu from "./pages/global/Sidebar";
 import Dashboard from "./pages/dashboard";
 import Team from "./pages/team/Team";
-import Invoices from "./pages/Invoices";
+import Invoices from "./pages/invoices/index";
 import Contacts from "./pages/contacts/index";
 import FAQ from './pages/Faq';
 import Form from './pages/Form';

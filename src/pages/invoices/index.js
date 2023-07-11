@@ -1,16 +1,16 @@
-import { Box, useTheme } from "@mui/material";
-import { DataGrid, GridToolbar } from "@mui/x-data-grid";
+
+import { Box, Typography, useTheme } from "@mui/material";
+import { DataGrid } from "@mui/x-data-grid";
 import { colorTokens } from "../../theme";
-import { mockDataContacts } from "../../data/sampleData";
+import { mockDataInvoices } from "../../data/sampleData";
 import Header from "../../components/Header";
 
-export default function Contacts(){
+export default function Invoices(){
     const theme = useTheme();
     const colors = colorTokens(theme.palette.mode);
 
     const columns = [
         {field: "id", headerName: "id", flex: 0.5},
-        {field: "registrarId", headerName: "Registrar Id", flex: 1},
         {
             field: "name",
             headerName: "Full Name",
@@ -18,24 +18,26 @@ export default function Contacts(){
             cellClassName: "name-column--cell"
         },
         {
-            field: "age",
-            headerName: "Age",
-            type: "number",
-            headerAlign: "left",
-            align: "left",
-            flex: 0.5
+            field: "cost", 
+            headerName: "Cost", 
+            flex: 1, 
+            renderCell: (params) => {
+                return(
+                    <Typography color={colors.greenAccent[500]}>
+                        {params.row.cost} Birr
+                    </Typography>
+                )
+            }
         },
         {field: "email", headerName: "Email Address", flex: 2},
         {field: "phone", headerName: "Phone Number", flex: 1},
-        {field: "address", headerName: "Address", flex: 2},
-        {field: "city", headerName: "City", flex: 1},
-        {field: "zipCode", headerName: "Zip Code", flex: 1},
+        {field: "date", headerName: "Date", flex: 1}
         
     ]
 
     return(
         <Box sx={{ m: "20px" }}>
-            <Header title="CONTACTS" subtitle="List of Contacts for Future Reference" />
+            <Header title="INVOICES" subtitle="List of Invoice Balance" />
             <Box
                 sx={{
                     m: "30px 0 0 0",
@@ -60,17 +62,15 @@ export default function Contacts(){
                         borderTop: "none",
                         backgroundColor: colors.blueAccent[700]
                     },
-                    "& .MuiDataGrid-toolbarContainer .MuiButton-text": {
-                        color: `${colors.grey[100]} !important`
+                    "& .MuiCheckbox-root": {
+                        color: `${colors.greenAccent[200]} !important`
                     }
                 }}
             >
                 <DataGrid
-                    rows={mockDataContacts}
+                    rows={mockDataInvoices}
                     columns={columns}
-                    slots={{
-                        toolbar: GridToolbar
-                    }}
+                    checkboxSelection 
                 />
 
             </Box>
