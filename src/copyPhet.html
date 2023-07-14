@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copy Phet Videos</title>
+    <style>
+        .main{
+            margin: 3rem;
+        }
+        .btn-phet{
+            background-color: rgb(61, 19, 168);
+            color: #fff;
+            padding: 1rem;
+            display: inline-block;
+            border-radius: 6px;
+            font-size: 1.5rem;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div class="btn-phet">
+            Download Videos
+        </div>
+    </div>
+    <script>
+        const downloadBtn = document.body.querySelector(".btn-phet");
+        function downloadVideo(){
+            downloadBtn.addEventListener('click', function(e){
+                e.preventDefault();
+                //const fileUrl = "https://phet.colorado.edu/sims/html/quadrilateral/latest/quadrilateral_en.html?download";
+                let fileName = "file.html";
+                const downloadLink = document.createElement('a');
+                const fileUrls = ["quadrilateral", "my-solar-system", "calculus-grapher"];
+                fileUrls.forEach((fileUrl) => {
+                    try{
+                        fileName = `${fileUrl}.html`;
+                        downloadLink.href = `https://phet.colorado.edu/sims/html/${fileUrl}/latest/${fileUrl}_en.html?download`;
+                        downloadLink.download = fileName;
+                        downloadBtn.appendChild(downloadLink);
+                        downloadLink.click();
+                        document.body.removeChild(downloadLink);
+                    }catch(error){
+                        console.log("Error Occurred: ", error);
+                        return;
+                    }
+                    
+                })
+            });
+        }
+        downloadVideo();
+    </script>
+</body>
+</html>
