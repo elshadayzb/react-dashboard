@@ -27,6 +27,7 @@ code {
  .app{
   display: flex;
   position: relative;
+  height: 100%;
  }
 
  ::-webkit-scrollbar{

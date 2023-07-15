@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
-import listPlugin from "@fullcalendar/list;"
+import listPlugin from "@fullcalendar/list";
 import { Box, List, ListItem, ListItemText, Typography, useTheme } from "@mui/material";
 import { colorTokens } from '../../theme';
 import Header from '../../components/Header';
@@ -12,13 +12,13 @@ import { formatDate } from '@fullcalendar/core';
 export default function Calendar(){
     const theme = useTheme();
     const colors = colorTokens(theme.palette.mode);
-    const[currentEvents, setCurrentEvents] = useState();
+    const[currentEvents, setCurrentEvents] = useState([]);
 
     function handleDateClick(selected){
         const title = prompt("Please enter the title for the event.");
         const calendarApi = selected.view.calendar;
-        calendarApi.unSelect();
-
+        //calendarApi.unSelect();
+        console.log("Calendar API: ", calendarApi);
         if(title){
             calendarApi.addEvent({
                 id: `${selected.dateStr}`,
@@ -28,6 +28,7 @@ export default function Calendar(){
                 allDay: selected.allDay
             })
         }
+        
     }
 
     function handleEventClick(selected){
@@ -86,16 +87,16 @@ export default function Calendar(){
                 <Box sx={{flex: "1 1 100%", ml: "15px"}}>
                     <FullCalendar 
                         height="75vh"
-                        plugins={{
+                        plugins={[
                             dayGridPlugin,
                             timeGridPlugin,
                             interactionPlugin,
                             listPlugin
-                        }}
+                        ]}
                         headerToolbar={{
-                            left: "prev, next, today",
+                            left: "prev next today",
                             center: "title",
-                            right: "dayGridMonth, timeGridWeek, timeGridDay, listMonth",
+                            right: "dayGridMonth timeGridWeek timeGridDay listMonth",
                         }}
                         initialView="dayGridMonth"
                         editable={true}
@@ -105,6 +106,10 @@ export default function Calendar(){
                         select={handleDateClick}
                         eventClick={handleEventClick}
                         eventsSet={(events) => setCurrentEvents(events)}
+                        initialEvents={[
+                            { id: "1234", title: "All Day Event", date: "2023-07-14"},
+                            { id: "4321", title: "Timed Event", date: "2023-07-15"}
+                        ]}
                     />
                 </Box>
             </Box>

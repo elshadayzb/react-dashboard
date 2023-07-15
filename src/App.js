@@ -7,13 +7,13 @@ import Dashboard from "./pages/dashboard";
 import Team from "./pages/team/Team";
 import Invoices from "./pages/invoices/index";
 import Contacts from "./pages/contacts/index";
-import FAQ from './pages/Faq';
+import FAQ from './pages/faq/index';
 import Form from './pages/form/index';
-import Bar from './pages/Bar';
+import Bar from './pages/bar/index';
 import Line from './pages/Line';
 import Pie from './pages/Pie';
 import Geography from './pages/Geography';
-import Calendar from './pages/Calendar';
+import Calendar from './pages/calendar/index';
 
 
 function App() {
